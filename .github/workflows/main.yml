@@ -30,7 +30,7 @@ jobs:
 
       - name: Check Application
         run: |
-          curl --silent --fail http://localhost:8081 || (kill $(cat app.pid) && exit 1)
+          curl --silent --fail http://localhost:8080 || (kill $(cat app.pid) && exit 1)
 
       - name: Stop Application
         run: |
