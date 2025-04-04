@@ -30,7 +30,7 @@ jobs:
 
       - name: Start production server
         run: |
-          serve -s dist -l 8081 &
+          serve -s dist -l 8080 &
           echo $! > app.pid
           sleep 10
 
