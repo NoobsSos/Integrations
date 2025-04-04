@@ -1,4 +1,4 @@
-name: Lab_5_pipeline
+name: Build and Serve Production Version
 
 on:
   push:
@@ -17,26 +17,28 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Start Application
+      - name: Build application
+        run: npm run build
+
+      - name: Install serve (static server)
+        run: npm install -g serve
+
+      - name: Start production server
         run: |
-          npm run dev &
+          serve -s dist -l 8081 &
           echo $! > app.pid
           sleep 10
 
-      - name: Check Application
+      - name: Check application
         run: |
           curl --silent --fail http://localhost:8080 || (kill $(cat app.pid) && exit 1)
 
-      - name: Stop Application
+      - name: Stop production server
         run: |
           kill $(cat app.pid)
           rm -f app.pid
-
-      - name: Build Application
-        run: npm run build
-
