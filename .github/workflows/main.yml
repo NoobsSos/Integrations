@@ -1,4 +1,4 @@
-name: My GitHub Actions Pipeline
+name: Lab_5_pipeline
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Або версія, яка тобі потрібна
+          node-version: 18 
 
       - name: Install dependencies
         run: npm install
